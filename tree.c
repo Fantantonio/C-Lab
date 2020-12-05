@@ -6,30 +6,30 @@ typedef struct node
     int val;
     struct node *left;
     struct node *right;
-} * node_t;
+} * Node;
 
-node_t createNode(int val)
+Node createNode(int val)
 {
-    node_t new_node = (node_t)malloc(sizeof(node_t));
+    Node new_node = (Node)malloc(sizeof(Node));
     new_node->val = val;
     new_node->left = NULL;
     new_node->right = NULL;
     return new_node;
 }
 
-node_t appendLeft(node_t root, int val)
+Node appendLeft(Node root, int val)
 {
     root->left = createNode(val);
     return root->left;
 }
 
-node_t appendRight(node_t root, int val)
+Node appendRight(Node root, int val)
 {
     root->right = createNode(val);
     return root->right;
 }
 
-void printTree(node_t node, int liv)
+void printTree(Node node, int liv)
 {
     if (node == NULL)
         return;
@@ -40,9 +40,21 @@ void printTree(node_t node, int liv)
     printTree(node->right, liv);
 }
 
+/*
+_______________________
+|                     |
+|       1       liv: 0|
+|------/ \-------------
+|     2   3     liv: 1|
+|----/ \---------------
+|   4   5       liv: 2|
+|------/---------------
+|     6         liv: 3|
+|_____________________|
+*/
 int main()
 {
-    node_t root = createNode(1);
+    Node root = createNode(1);
 
     root->left = appendLeft(root, 2);
     root->right = appendRight(root, 3);

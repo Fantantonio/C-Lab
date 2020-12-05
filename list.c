@@ -5,11 +5,11 @@ typedef struct node
 {
   int val;
   struct node *next;
-} * node_t;
+} * Node;
 
-void print_list(node_t head)
+void print_list(Node head)
 {
-  node_t current = head;
+  Node current = head;
   printf("The list contains:\n");
   while (current != NULL)
   {
@@ -19,15 +19,15 @@ void print_list(node_t head)
   printf("\n");
 }
 
-node_t createNode(int e)
+Node createNode(int e)
 {
-  node_t new_node = (node_t)malloc(sizeof(node_t));
+  Node new_node = (Node)malloc(sizeof(Node));
   new_node->val = e;
   new_node->next = NULL;
   return new_node;
 }
 
-int append(node_t *head, int e)
+int append(Node *head, int e)
 {
   if (*head == NULL)
   {
@@ -35,7 +35,7 @@ int append(node_t *head, int e)
   }
   else
   {
-    node_t current = *head;
+    Node current = *head;
     while (current->next != NULL)
     {
       current = current->next;
@@ -45,7 +45,7 @@ int append(node_t *head, int e)
   return 1;
 }
 
-int prepend(node_t *head, int e)
+int prepend(Node *head, int e)
 {
   if (*head == NULL)
   {
@@ -53,14 +53,14 @@ int prepend(node_t *head, int e)
   }
   else
   {
-    node_t new_node = createNode(e);
+    Node new_node = createNode(e);
     new_node->next = *head;
     *head = new_node;
   }
   return 1;
 }
 
-int fill_list(node_t *head)
+int fill_list(Node *head)
 {
   int i = 0;
   char input;
@@ -80,7 +80,7 @@ int main()
 {
   printf("\nAdd values to list. Press Q + Enter to stop\n");
 
-  node_t head = NULL;
+  Node head = NULL;
 
   printf("\n%d values added\n", fill_list(&head));
 
